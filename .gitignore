@@ -1,0 +1,7 @@
+node_modules
+dist
+.parcel-cache
+.code
+.DS_Store
+.env*
+.github

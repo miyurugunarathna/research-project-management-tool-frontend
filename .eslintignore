@@ -1,0 +1,9 @@
+.github/
+.vscode/
+.idea/
+node_modules/
+dist/
+build/
+public/
+src/api/apiInstance.js
+tailwind.config.js

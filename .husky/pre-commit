@@ -1,0 +1,23 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Hello! kid. I'm the Goofy 🐶 and I'm responsible for all your coding standards. Woof..."
+
+yarn format:check || (
+    echo "Woof... 🐶 You got caught.👻 Prettier Check failed. Run yarn format, add changes and try commit again.";
+    false;
+)
+
+yarn lint || (
+    echo "ESLint check failed. 😑 Please, adhere to coding standards. Make the required changes listed above and try again. Woof...";
+    false;
+)
+
+echo "Yaay... Code seems like good. 👏 Let's try to build now. Woof woof 🐶🐕"
+
+yarn build || (
+    echo "It seems like build getting failed. 😬 Check the errors above. Goofy always here with you. 🖤🐶";
+    false;
+)
+
+echo "Yaay yaay... you did it finally. You're the best. Woof woof woof 🐶"

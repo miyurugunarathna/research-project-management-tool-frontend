@@ -1,0 +1,10 @@
+build/
+dist/
+.github/
+.idea/
+.vscode/
+node_modules/
+yarn.lock
+public/
+LICENSE
+README.md
