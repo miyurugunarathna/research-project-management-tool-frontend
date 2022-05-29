@@ -4,8 +4,8 @@ const group = [
   {
     groupID: "",
     groupName: "",
-    topic: ""
-  }
+    topic: "",
+  },
 ];
 
 export const StudentGroup = () => {

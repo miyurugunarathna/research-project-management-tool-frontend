@@ -9,7 +9,7 @@ const store = configureStore({
     submission: submissionReducer,
     stage: stageReducer,
     marksheet: marksheetReducer,
-    studentgroup: groupsReducer
+    studentgroup: groupsReducer,
   },
 });
 
