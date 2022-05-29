@@ -2,7 +2,7 @@ export const Sidebar = () => {
   return (
     <ul className="menu bg-base-200 w-56 p-2">
       <li>
-        <a>
+        <a href="http://localhost:1234">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"
@@ -20,7 +20,7 @@ export const Sidebar = () => {
         </a>
       </li>
       <li>
-        <a>
+        <a href="http://localhost:1234/submission">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
