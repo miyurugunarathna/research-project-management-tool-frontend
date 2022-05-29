@@ -66,52 +66,52 @@ const initialState = {
 };
 
 export const groupSlice = createSlice({
-    name: "groups",
-    initialState,
-    extraReducers: {
-      // Get all StudentGroups
-      /* eslint-disable no-param-reassign */
-      [getGroupStore.fulfilled]: (state, action) => {
-        state.groups = action.payload;
-      },
-      // eslint-disable-next-line
-      [getGroupStore.rejected]: (state, action) => {
-        state.groups = [];
-      },
-      // Get one StudentGroup
-      /* eslint-disable no-param-reassign */
-      [getOneGroupStore.fulfilled]: (state, action) => {
-        state.groups = action.payload;
-      },
-      // Add StudentGroup
-      [addGroupStore.fulfilled]: (state, action) => {
-        state.groups.push(action.payload);
-      },
-      // eslint-disable-next-line
-      [addGroupStore.rejected]: (state, action) => {
-        // state.groups = [];
-      },
-      // Update StudentGroup
-      [updateGroupStore.fulfilled]: (state, action) => {
-        const { groupID, groupName, topic } = action.payload;
-        const existingGroup = state.find((group) => group.id === groupID);
-        if (existingGroup) {
-          existingGroup.groupName = groupName;
-          existingGroup.topic = topic;
-        }
-      },
-      // Delete StudentGroup
-      [deleteGroupStore.fulfilled]: (state, action) => {
-        state.groups = state.groups.filter(
-          (group) => group.id !== action.meta.arg,
-        );
-      },
-      // eslint-disable-next-line
-      [deleteGroupStore.rejected]: (state, action) => {
-        // state.groups = [];
-      },
+  name: "groups",
+  initialState,
+  extraReducers: {
+    // Get all StudentGroups
+    /* eslint-disable no-param-reassign */
+    [getGroupStore.fulfilled]: (state, action) => {
+      state.groups = action.payload;
     },
-  });
-  
-  const { reducer } = groupSlice;
-  export default reducer;
+    // eslint-disable-next-line
+    [getGroupStore.rejected]: (state, action) => {
+      state.groups = [];
+    },
+    // Get one StudentGroup
+    /* eslint-disable no-param-reassign */
+    [getOneGroupStore.fulfilled]: (state, action) => {
+      state.groups = action.payload;
+    },
+    // Add StudentGroup
+    [addGroupStore.fulfilled]: (state, action) => {
+      state.groups.push(action.payload);
+    },
+    // eslint-disable-next-line
+    [addGroupStore.rejected]: (state, action) => {
+      // state.groups = [];
+    },
+    // Update StudentGroup
+    [updateGroupStore.fulfilled]: (state, action) => {
+      const { groupID, groupName, topic } = action.payload;
+      const existingGroup = state.find((group) => group.id === groupID);
+      if (existingGroup) {
+        existingGroup.groupName = groupName;
+        existingGroup.topic = topic;
+      }
+    },
+    // Delete StudentGroup
+    [deleteGroupStore.fulfilled]: (state, action) => {
+      state.groups = state.groups.filter(
+        (group) => group.id !== action.meta.arg,
+      );
+    },
+    // eslint-disable-next-line
+    [deleteGroupStore.rejected]: (state, action) => {
+      // state.groups = [];
+    },
+  },
+});
+
+const { reducer } = groupSlice;
+export default reducer;
