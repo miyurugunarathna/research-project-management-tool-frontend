@@ -1,8 +1,8 @@
 import apiInstance from "../apiInstance";
 
-const getStages = () => {
+const getMarksheets = () => {
   return apiInstance
-    .get(`/api/stage`)
+    .get(`/api/marksheet`)
     .then((response) => {
       return response;
     })
@@ -11,9 +11,9 @@ const getStages = () => {
     });
 };
 
-const addStage = (stage) => {
+const addMarksheet = (marksheet) => {
   return apiInstance
-    .post(`/api/stage`, stage)
+    .post(`/api/marksheet`, marksheet)
     .then((response) => {
       return response;
     })
@@ -22,9 +22,9 @@ const addStage = (stage) => {
     });
 };
 
-const getOneStage = (stageID) => {
+const getOneMarksheet = (marksheetID) => {
   return apiInstance
-    .get(`/api/stage/${stageID}`)
+    .get(`/api/marksheet/${marksheetID}`)
     .then((response) => {
       return response;
     })
@@ -33,9 +33,9 @@ const getOneStage = (stageID) => {
     });
 };
 
-const updateStage = (stage, stageID) => {
+const updateMarksheet = (marksheet, marksheetID) => {
   return apiInstance
-    .put(`/api/stage/${stageID}`, stage)
+    .put(`/api/marksheet/${marksheetID}`, marksheet)
     .then((response) => {
       return response;
     })
@@ -44,9 +44,9 @@ const updateStage = (stage, stageID) => {
     });
 };
 
-const deleteStage = (stageID) => {
+const deleteMarksheet = (marksheetID) => {
   return apiInstance
-    .delete(`/api/stage/${stageID}`)
+    .delete(`/api/marksheet/${marksheetID}`)
     .then((response) => {
       return response;
     })
@@ -55,11 +55,11 @@ const deleteStage = (stageID) => {
     });
 };
 
-const stageRequest = {
-  getStages,
-  addStage,
-  getOneStage,
-  updateStage,
-  deleteStage,
+const markSheetRequest = {
+  getMarksheets,
+  addMarksheet,
+  getOneMarksheet,
+  updateMarksheet,
+  deleteMarksheet,
 };
-export default stageRequest;
+export default markSheetRequest;
