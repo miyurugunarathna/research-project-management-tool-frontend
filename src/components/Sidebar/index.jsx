@@ -36,7 +36,7 @@ export const Sidebar = () => {
         </a>
       </li>
       <li>
-        <a>
+        <a href="http://localhost:1234/marksheet">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-6 w-6"

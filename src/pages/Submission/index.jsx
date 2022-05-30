@@ -38,7 +38,7 @@ export const Submission = () => {
         console.log(res);
         if (res.data === "Submission successfully saved") {
           setInputs(initialInput);
-          toast.success("Submission room success!");
+          toast.success("Submission success!");
         } else {
           toast.error("Something went wrong!");
         }
@@ -52,7 +52,9 @@ export const Submission = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubmissionStore());
+    dispatch(getSubmissionStore()).then((response) => {
+      console.log(response);
+    });
   }, [dispatch]);
 
   return (
