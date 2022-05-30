@@ -4,6 +4,7 @@ import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import { getSubmissionStore } from "../../store/submission";
 import submissionRequest from "../../api/Submission/submission.request";
+import axios from "axios";
 
 export const Submission = () => {
   const initialState = [
@@ -19,7 +20,7 @@ export const Submission = () => {
   };
 
   const submissions = useSelector((state) => state.submission);
-  const [submission, setSubmission] = useState(initialState);
+  const [submission, setSubmission] = useState([]);
   const [inputs, setInputs] = useState(initialInput);
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ export const Submission = () => {
         console.log(res);
         if (res.data === "Submission successfully saved") {
           setInputs(initialInput);
-          toast.success("Submission room success!");
+          toast.success("Submission success!");
         } else {
           toast.error("Something went wrong!");
         }
@@ -52,8 +53,24 @@ export const Submission = () => {
   };
 
   useEffect(() => {
-    dispatch(getSubmissionStore());
+    dispatch(getSubmissionStore()).then((response) => {
+      // console.log(response);
+    });
   }, [dispatch]);
+
+  useEffect(() => {
+    submissionRequest.getSubmissions().then((res) => {
+      console.log(res);
+      console.log(res.data.data[0].description);
+      setSubmission(res.data.data);
+    });
+  }, []);
+
+  const DeleteSubmission = (id) => {
+    submissionRequest.deleteSubmission(id).then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <div className="flex flex-row h-screen">
@@ -110,53 +127,36 @@ export const Submission = () => {
                   <th scope="col" class="px-6 py-3">
                     Description
                   </th>
-                  <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Delete</span>
-                  </th>
                 </tr>
               </thead>
               <tbody>
-                {submission[0].id !== "" &&
-                  submission.map((res) => (
-                    <tr
-                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                      key={res.id}>
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                        <td class="px-6 py-1">Hi</td>
-                      </th>
-                      <td class="px-6 py-1">Hello</td>
-                      <td class="px-6 py-4 text-right">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <td class="px-6 py-1">
+                      {submission.map((sub) => (
+                        <div key={sub.id}>{sub.type}</div>
+                      ))}
+                    </td>
+                  </th>
+                  <td class="px-6 py-1">
+                    {submission.map((sub) => (
+                      <div key={sub.id}>
+                        {sub.description}{" "}
                         <a
                           href="#"
                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                          Edit
+                          <button onClick={() => DeleteSubmission(sub._id)}>
+                            Delete
+                          </button>
                         </a>
-                      </td>
-                      <td class="px-6 py-4 text-right">
-                        <a
-                          href="#"
-                          class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                          Delete
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
+                      </div>
+                    ))}
+                  </td>
+                </tr>
               </tbody>
             </table>
-
-            {/* {
-              submissions.map(({type, description, id}) => {
-                <h1 key={id}>
-                  {type}
-                  {description}
-                </h1>
-              })
-            } */}
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import { LogIn } from "./pages/LogIn.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { StudentGroup } from "./pages/StudentGroup/index.jsx";
 import { Submission } from "./pages/Submission/index.jsx";
+import { MarkSheet } from "./pages/Marksheet/index.jsx";
+import { Stage } from "./pages/Stage/index.jsx";
 
 export const App = () => {
   return (
@@ -14,6 +16,8 @@ export const App = () => {
         <Route path="/student-groups" element={<StudentGroup />} />
         <Route path="/" element={<Home />} />
         <Route path="/submission" element={<Submission />} />
+        <Route path="/marksheet" element={<MarkSheet />} />
+        <Route path="/stage" element={<Stage />} />
       </Routes>
     </BrowserRouter>
   );
