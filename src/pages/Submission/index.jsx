@@ -4,16 +4,8 @@ import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
 import { getSubmissionStore } from "../../store/submission";
 import submissionRequest from "../../api/Submission/submission.request";
-import axios from "axios";
 
 export const Submission = () => {
-  const initialState = [
-    {
-      type: "",
-      description: "",
-    },
-  ];
-
   const initialInput = {
     type: "",
     description: "",
@@ -136,7 +128,11 @@ export const Submission = () => {
                     class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                     <td class="px-6 py-1">
                       {submission.map((sub) => (
-                        <div key={sub.id}>{sub.type}</div>
+                        <div key={sub.id}>
+                          {sub.type}
+                          <br />
+                          <br />
+                        </div>
                       ))}
                     </td>
                   </th>
@@ -151,6 +147,8 @@ export const Submission = () => {
                             Delete
                           </button>
                         </a>
+                        <br />
+                        <br />
                       </div>
                     ))}
                   </td>

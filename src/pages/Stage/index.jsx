@@ -2,8 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
 import { Header } from "../../components/Header";
+import submissionRequest from "../../api/Submission/submission.request";
+import groupRequest from "../../api/StudentGroup/student-group.request";
 
 export const Stage = () => {
+  const [submission, setSubmission] = useState([]);
+  const [reviewer, setReviwer] = useState([]);
+  const [group, setGroup] = useState([]);
+
+  useEffect(() => {
+    submissionRequest.getSubmissions().then((res) => {
+      console.log(res);
+      console.log(res.data.data[0].description);
+      setSubmission(res.data.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    groupRequest.getStudentGroup().then((res) => {
+      console.log(res);
+      setGroup(res.data.data);
+    });
+  }, []);
+
   return (
     <div className="flex flex-row h-screen">
       <StudentSidebar />
@@ -32,9 +53,11 @@ export const Stage = () => {
       focus:text-gray-700  focus:border-blue-600 focus:outline-none"
             aria-label="Default select example">
             <option selected>---Select a Submission Type---</option>
-            <option value="1">Submission 1</option>
-            <option value="2">Submission 2</option>
-            <option value="3">Submission 3</option>
+            {submission.map((sub) => (
+              <option value={sub.id} key={sub.id}>
+                {sub.type}
+              </option>
+            ))}
           </select>
           <br />
 
@@ -80,9 +103,11 @@ export const Stage = () => {
       focus:text-gray-700  focus:border-blue-600 focus:outline-none"
             aria-label="Default select example">
             <option selected>---Select your group here---</option>
-            <option value="1">Group 1</option>
-            <option value="2">Group 2</option>
-            <option value="3">Group 3</option>
+            {group.map((grp) => (
+              <option value={grp.id} key={grp.id}>
+                {grp.groupID}
+              </option>
+            ))}
           </select>
 
           <div class="m-4">
