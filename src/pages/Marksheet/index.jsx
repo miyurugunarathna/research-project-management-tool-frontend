@@ -127,7 +127,11 @@ export const MarkSheet = () => {
                     class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                     <td class="px-6 py-1">
                       {marksheet.map((mark) => (
-                        <div key={mark.id}>{mark.criteria}</div>
+                        <div key={mark.id}>
+                          {mark.criteria}
+                          <br />
+                          <br />
+                        </div>
                       ))}
                     </td>
                   </th>
@@ -142,6 +146,8 @@ export const MarkSheet = () => {
                             Delete
                           </button>
                         </a>
+                        <br />
+                        <br />
                       </div>
                     ))}
                   </td>

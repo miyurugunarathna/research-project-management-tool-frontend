@@ -2,7 +2,7 @@ import apiInstance from "../apiInstance";
 
 const getStudentGroup = () => {
   return apiInstance
-    .get(`/api/groups/`)
+    .get(`/api/student-group/`)
     .then((response) => {
       return response;
     })
