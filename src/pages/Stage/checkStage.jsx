@@ -1,45 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { SupervisorSidebar } from "../../components/Sidebar/supervisorsidebar";
 import { Header } from "../../components/Header";
-import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
-import markSheetRequest from "../../api/Marksheet/marksheet.request";
+import submissionRequest from "../../api/Submission/submission.request";
+import stageRequest from "../../api/Stage/stage.request";
 
-export const Marks = () => {
-  const initialState = [
-    {
-      criteria: "",
-      distribution: "",
-    },
-  ];
-
-  const [marksheet, setMarksheet] = useState(initialState);
+export const CheckStage = () => {
+  const [submission, setSubmission] = useState([]);
+  const [stage, setStage] = useState([]);
 
   useEffect(() => {
-    markSheetRequest.getMarksheets().then((res) => {
-      console.log(res.data.data);
-      setMarksheet(res.data.data);
+    submissionRequest.getSubmissions().then((res) => {
+      setSubmission(res.data.data);
     });
-  }, [marksheet]);
+  }, [submission]);
+
+  useEffect(() => {
+    stageRequest.getStages().then((res) => {
+      console.log(res.data.data);
+      setStage(res.data.data);
+    });
+  }, []);
 
   return (
     <div className="flex flex-row h-screen">
-      <StudentSidebar />
+      <SupervisorSidebar />
       <div className="flex flex-col w-full">
         <Header />
-        <div className="w-full px-64 pt-10">
+        <div className="w-full px-32 pt-10">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-            Marksheet for Year 2022
+            Submissions from Students
           </h1>
           <br />
+
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="px-6 py-3">
-                    Criteria
+                    Submision Type
                   </th>
                   <th scope="col" class="px-6 py-3">
-                    Distribution
+                    Document
                   </th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -48,9 +51,9 @@ export const Marks = () => {
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                     <td class="px-6 py-1">
-                      {marksheet.map((mark) => (
-                        <div key={mark.id}>
-                          {mark.criteria}
+                      {stage.map((s) => (
+                        <div key={s.id}>
+                          {s.submissionType.type}
                           <br />
                           <br />
                         </div>
@@ -58,11 +61,23 @@ export const Marks = () => {
                     </td>
                   </th>
                   <td class="px-6 py-1">
-                    {marksheet.map((mark) => (
-                      <div key={mark.id}>
-                        {mark.distribution}
+                    {stage.map((s) => (
+                      <div key={s.id}>
+                        {s.document} <br />
                         <br />
-                        <br />{" "}
+                      </div>
+                    ))}
+                  </td>
+                  <td class="px-6 py-1">
+                    {stage.map((s) => (
+                      <div key={s.id}>
+                        <a
+                          href="#"
+                          class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                          <button>Update the results</button>
+                        </a>
+                        <br />
+                        <br />
                       </div>
                     ))}
                   </td>

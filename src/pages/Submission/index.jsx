@@ -56,7 +56,7 @@ export const Submission = () => {
       console.log(res.data.data[0].description);
       setSubmission(res.data.data);
     });
-  }, []);
+  }, [submission]);
 
   const DeleteSubmission = (id) => {
     submissionRequest.deleteSubmission(id).then((res) => {
@@ -119,6 +119,7 @@ export const Submission = () => {
                   <th scope="col" class="px-6 py-3">
                     Description
                   </th>
+                  <th scope="col" class="px-6 py-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -139,7 +140,14 @@ export const Submission = () => {
                   <td class="px-6 py-1">
                     {submission.map((sub) => (
                       <div key={sub.id}>
-                        {sub.description}{" "}
+                        {sub.description} <br />
+                        <br />
+                      </div>
+                    ))}
+                  </td>
+                  <td class="px-6 py-1">
+                    {submission.map((sub) => (
+                      <div key={sub.id}>
                         <a
                           href="#"
                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">

@@ -1,14 +1,61 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
 import { Header } from "../../components/Header";
 import submissionRequest from "../../api/Submission/submission.request";
 import groupRequest from "../../api/StudentGroup/student-group.request";
+import userRequest from "../../api/User/user.request";
+import stageRequest from "../../api/Stage/stage.request";
 
 export const Stage = () => {
+  const initialInput = {
+    submissionType: "",
+    status: true,
+    reviewer: "",
+    marksheet: "",
+    result: "",
+    document: "",
+    dueDate: "",
+    group: "",
+  };
+
   const [submission, setSubmission] = useState([]);
-  const [reviewer, setReviwer] = useState([]);
+  const [inputs, setInputs] = useState(initialInput);
+  const [user, setUser] = useState([]);
   const [group, setGroup] = useState([]);
+
+  const Stage = () => {
+    // const token = localStorage.getItem("token");
+    // const base64Url = token.split(".")[1];
+    // const base64 = base64Url.replace("-", "+").replace("_", "/");
+    // const user = JSON.parse(window.atob(base64));
+
+    stageRequest
+      .addStage({
+        submissionType: inputs.submissionType,
+        status: true,
+        reviewer: inputs.reviewer,
+        marksheet: "",
+        result: "",
+        document: "",
+        dueDate: "",
+        group: inputs.group,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data === "Stage successfully saved") {
+          setInputs(initialInput);
+          toast.success("Stage success!");
+        } else {
+          toast.error("Something went wrong!");
+        }
+      });
+  };
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setInputs((values) => ({ ...values, [name]: value }));
+    console.log(inputs);
+  };
 
   useEffect(() => {
     submissionRequest.getSubmissions().then((res) => {
@@ -22,6 +69,13 @@ export const Stage = () => {
     groupRequest.getStudentGroup().then((res) => {
       console.log(res);
       setGroup(res.data.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    userRequest.getAllUsers().then((res) => {
+      console.log(res);
+      setUser(res.data.data);
     });
   }, []);
 
@@ -51,10 +105,13 @@ export const Stage = () => {
       ease-in-out
       m-0
       focus:text-gray-700  focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example">
+            aria-label="Default select example"
+            name="submissionType"
+            value={inputs.submissionType}
+            onChange={handleChange}>
             <option selected>---Select a Submission Type---</option>
             {submission.map((sub) => (
-              <option value={sub.id} key={sub.id}>
+              <option value={sub.type} key={sub.id}>
                 {sub.type}
               </option>
             ))}
@@ -77,11 +134,16 @@ export const Stage = () => {
       ease-in-out
       m-0
       focus:text-gray-700  focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example">
+            aria-label="Default select example"
+            name="reviewer"
+            value={inputs.reviewer}
+            onChange={handleChange}>
             <option selected>---Select your reviewer here---</option>
-            <option value="1">Reviewer 1</option>
-            <option value="2">Reviewer 2</option>
-            <option value="3">Reviewer 3</option>
+            {user.map((u) => (
+              <option value={u.firstName} key={u.id}>
+                {u.firstName}
+              </option>
+            ))}
           </select>
           <br />
 
@@ -101,11 +163,14 @@ export const Stage = () => {
       ease-in-out
       m-0
       focus:text-gray-700  focus:border-blue-600 focus:outline-none"
-            aria-label="Default select example">
+            aria-label="Default select example"
+            name="group"
+            value={inputs.group}
+            onChange={handleChange}>
             <option selected>---Select your group here---</option>
             {group.map((grp) => (
-              <option value={grp.id} key={grp.id}>
-                {grp.groupID}
+              <option value={inputs.group} key={grp.id}>
+                {grp.groupName}
               </option>
             ))}
           </select>
@@ -136,7 +201,9 @@ export const Stage = () => {
             </div>
           </div>
 
-          <button className="mt-4 btn btn-active btn-primary w-full">
+          <button
+            className="mt-4 btn btn-active btn-primary w-full"
+            onClick={Stage}>
             SAVE
           </button>
         </div>

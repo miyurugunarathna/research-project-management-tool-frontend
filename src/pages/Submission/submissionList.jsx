@@ -11,7 +11,7 @@ export const SubmissionList = () => {
     submissionRequest.getSubmissions().then((res) => {
       setSubmission(res.data.data);
     });
-  }, []);
+  }, [submission]);
 
   return (
     <div className="flex flex-row h-screen">

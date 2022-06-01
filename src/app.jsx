@@ -8,6 +8,7 @@ import { MarkSheet } from "./pages/Marksheet/index.jsx";
 import { Stage } from "./pages/Stage/index.jsx";
 import { Marks } from "./pages/Marksheet/marks.jsx";
 import { SubmissionList } from "./pages/Submission/submissionList.jsx";
+import { CheckStage } from "./pages/Stage/checkStage.jsx";
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
         <Route path="/stage" element={<Stage />} />
         <Route path="/marks" element={<Marks />} />
         <Route path="/submissionList" element={<SubmissionList />} />
+        <Route path="/checkstage" element={<CheckStage />} />
       </Routes>
     </BrowserRouter>
   );
