@@ -58,7 +58,7 @@ export const MarkSheet = () => {
       console.log(res.data.data);
       setMarksheet(res.data.data);
     });
-  });
+  }, [marksheet]);
 
   const DeleteMarksheet = (id) => {
     markSheetRequest.deleteMarksheet(id).then((res) => {
@@ -118,6 +118,7 @@ export const MarkSheet = () => {
                   <th scope="col" class="px-6 py-3">
                     Distribution
                   </th>
+                  <th scope="col" class="px-6 py-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -138,7 +139,14 @@ export const MarkSheet = () => {
                   <td class="px-6 py-1">
                     {marksheet.map((mark) => (
                       <div key={mark.id}>
-                        {mark.distribution}{" "}
+                        {mark.distribution} <br />
+                        <br />
+                      </div>
+                    ))}
+                  </td>
+                  <td class="px-6 py-1">
+                    {marksheet.map((mark) => (
+                      <div key={mark.id}>
                         <a
                           href="#"
                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">

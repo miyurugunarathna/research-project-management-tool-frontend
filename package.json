@@ -11,9 +11,11 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
   },
   "devDependencies": {
+    "@testing-library/react": "^13.3.0",
     "buffer": "^6.0.3",
     "eslint": "^8.15.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -27,12 +29,15 @@
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
     "process": "^0.11.10",
-    "tailwindcss": "^3.0.24"
+    "react-test-renderer": "^18.1.0",
+    "tailwindcss": "^3.0.24",
+    "jest": "^28.1.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
     "cross-env": "^7.0.3",
+    "D": "^1.0.0",
     "daisyui": "^2.14.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
