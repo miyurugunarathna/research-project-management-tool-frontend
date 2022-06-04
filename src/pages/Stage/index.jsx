@@ -90,21 +90,7 @@ export const Stage = () => {
           </h1>
 
           <select
-            class="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-       bg-clip-padding bg-no-repeat
-      border border-solid
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700  focus:border-blue-600 focus:outline-none"
+            className="mt-1 input input-bordered w-full"
             aria-label="Default select example"
             name="submissionType"
             value={inputs.submissionType}
@@ -117,23 +103,10 @@ export const Stage = () => {
             ))}
           </select>
           <br />
+          <br />
 
           <select
-            class="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-       bg-clip-padding bg-no-repeat
-      border border-solid
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700  focus:border-blue-600 focus:outline-none"
+            className="mt-1 input input-bordered w-full"
             aria-label="Default select example"
             name="reviewer"
             value={inputs.reviewer}
@@ -146,23 +119,10 @@ export const Stage = () => {
             ))}
           </select>
           <br />
+          <br />
 
           <select
-            class="form-select appearance-none
-      block
-      w-full
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-       bg-clip-padding bg-no-repeat
-      border border-solid
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700  focus:border-blue-600 focus:outline-none"
+            className="mt-1 input input-bordered w-full"
             aria-label="Default select example"
             name="group"
             value={inputs.group}
@@ -174,32 +134,17 @@ export const Stage = () => {
               </option>
             ))}
           </select>
-
-          <div class="m-4">
-            <div class="flex items-center justify-center w-full">
-              <label class="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:border-gray-300">
-                <div class="flex flex-col items-center justify-center pt-7">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="w-8 h-8 text-gray-400 group-hover:text-gray-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                    />
-                  </svg>
-                  <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                    Click here to Attach your submission
-                  </p>
-                </div>
-                <input type="file" class="opacity-0" />
-              </label>
-            </div>
-          </div>
+          <br />
+          <br />
+          <input
+            className="mt-1 input input-bordered w-full"
+            type="text"
+            name="type"
+            placeholder="Enter the accessible onedrive/googledrive link for your documents"
+            required
+          />
+          <br />
+          <br />
 
           <button
             className="mt-4 btn btn-active btn-primary w-full"
