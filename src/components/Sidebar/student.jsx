@@ -1,4 +1,16 @@
+import userRequest from "../../api/User/user.request";
 export const StudentSidebar = () => {
+  const loginout = () => {
+    // const token = localStorage.getItem("token");
+    // const base64Url = token.split(".")[1];
+    // const base64 = base64Url.replace("-", "+").replace("_", "/");
+    // const user = JSON.parse(window.atob(base64));
+
+    userRequest.logout().then((res) => {
+      navigate("/login");
+    });
+  };
+
   return (
     <ul className="menu bg-base-200 w-56 p-2">
       <li>
@@ -70,6 +82,9 @@ export const StudentSidebar = () => {
           </svg>
           Stages
         </a>
+      </li>
+      <li>
+        <button onClick={loginout}>Log Out</button>
       </li>
     </ul>
   );
