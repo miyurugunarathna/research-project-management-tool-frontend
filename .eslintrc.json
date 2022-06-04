@@ -23,6 +23,7 @@
     "react/react-in-jsx-scope": ["off"],
     "no-shadow": "off",
     "no-console": "error",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "consistent-return": "off"
   }
 }

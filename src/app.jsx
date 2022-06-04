@@ -9,6 +9,7 @@ import { Stage } from "./pages/Stage/index.jsx";
 import { Marks } from "./pages/Marksheet/marks.jsx";
 import { SubmissionList } from "./pages/Submission/submissionList.jsx";
 import { CheckStage } from "./pages/Stage/checkStage.jsx";
+import { Chat } from "./pages/Chat/index.jsx";
 
 export const App = () => {
   return (
@@ -24,6 +25,7 @@ export const App = () => {
         <Route path="/marks" element={<Marks />} />
         <Route path="/submissionList" element={<SubmissionList />} />
         <Route path="/checkstage" element={<CheckStage />} />
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </BrowserRouter>
   );

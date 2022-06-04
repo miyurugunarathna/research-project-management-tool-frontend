@@ -1,6 +1,6 @@
 export const Breadcrumbs = () => {
   return (
-    <div class="text-sm breadcrumbs pt-0">
+    <div className="text-sm breadcrumbs pt-0">
       <ul>
         <li>
           <a>Home</a>
