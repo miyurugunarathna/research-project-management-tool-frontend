@@ -9,9 +9,12 @@ const apiInstance = axios.create({
 apiInstance.interceptors.request.use(
   async function (config) {
     config.baseURL = url || "http://localhost:5000";
-    config.headers = {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    };
+    if (localStorage.getItem("token")) {
+      config.headers = {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
+    }
+
     return config;
   },
   function (error) {

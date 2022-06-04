@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../../components/Header";
-import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
+import { Sidebar } from "../../components/Sidebar/index.jsx";
 import markSheetRequest from "../../api/Marksheet/marksheet.request";
 
 export const Marks = () => {
@@ -22,7 +22,7 @@ export const Marks = () => {
 
   return (
     <div className="flex flex-row h-screen">
-      <StudentSidebar />
+      <Sidebar />
       <div className="flex flex-col w-full">
         <Header />
         <div className="w-full px-64 pt-10">

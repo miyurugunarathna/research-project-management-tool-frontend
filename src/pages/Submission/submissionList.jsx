@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
 import { Header } from "../../components/Header";
 import submissionRequest from "../../api/Submission/submission.request";
+import { Sidebar } from "../../components/Sidebar/index.jsx";
 
 export const SubmissionList = () => {
   const [submission, setSubmission] = useState([]);
@@ -15,7 +15,7 @@ export const SubmissionList = () => {
 
   return (
     <div className="flex flex-row h-screen">
-      <StudentSidebar />
+      <Sidebar />
       <div className="flex flex-col w-full">
         <Header />
         <div className="w-full px-64 pt-10">
