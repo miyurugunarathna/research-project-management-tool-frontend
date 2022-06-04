@@ -56,7 +56,7 @@ export const Submission = () => {
       console.log(res.data.data[0].description);
       setSubmission(res.data.data);
     });
-  }, [submission]);
+  }, []);
 
   const DeleteSubmission = (id) => {
     submissionRequest.deleteSubmission(id).then((res) => {
