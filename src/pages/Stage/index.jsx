@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StudentSidebar } from "../../components/Sidebar/studentsidebar";
+import { Sidebar } from "../../components/Sidebar/index.jsx";
 import { Header } from "../../components/Header";
 import submissionRequest from "../../api/Submission/submission.request";
 import groupRequest from "../../api/StudentGroup/student-group.request";
@@ -81,7 +81,7 @@ export const Stage = () => {
 
   return (
     <div className="flex flex-row h-screen">
-      <StudentSidebar />
+      <Sidebar />
       <div className="flex flex-col w-full">
         <Header />
         <div className="w-full px-64 pt-10">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SupervisorSidebar } from "../../components/Sidebar/supervisorsidebar";
+import { Sidebar } from "../../components/Sidebar/index.jsx";
 import { Header } from "../../components/Header";
 import submissionRequest from "../../api/Submission/submission.request";
 import stageRequest from "../../api/Stage/stage.request";
@@ -23,7 +23,7 @@ export const CheckStage = () => {
 
   return (
     <div className="flex flex-row h-screen">
-      <SupervisorSidebar />
+      <Sidebar />
       <div className="flex flex-col w-full">
         <Header />
         <div className="w-full px-32 pt-10">
