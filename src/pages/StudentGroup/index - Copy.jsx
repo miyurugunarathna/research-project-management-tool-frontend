@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/Header";
-import { getGroupsStore } from "../../store/StudentGroup";
+import { getGroupStore } from "../../store/StudentGroup";
 import groupRequest from "../../api/StudentGroup/student-group.request";
 
 export const StudentGroup = () => {
@@ -13,7 +13,7 @@ export const StudentGroup = () => {
   };
 
   const groups = useSelector((state) => state.StudentGroup);
-  const [group, setStudentGroup] = useState([]);
+  const [group, setGroup] = useState([]);
   const [inputs, setInputs] = useState(initialInput);
   const dispatch = useDispatch();
 
@@ -43,7 +43,7 @@ export const StudentGroup = () => {
   };
 
   useEffect(() => {
-    dispatch(getGroupsStore()).then((response) => {
+    dispatch(getGroupStore()).then((response) => {
       console.log(response);
     });
   }, [dispatch]);
@@ -52,12 +52,12 @@ export const StudentGroup = () => {
     groupRequest.getStudentGroups().then((res) => {
       console.log(res);
       console.log(res.data.data[0].description);
-      setStudentGroup(res.data.data);
+      setSubmission(res.data.data);
     });
-  }, [group]);
+  }, [submission]);
 
-  const DeleteGroup = (id) => {
-    groupRequest.DeleteGroup(id).then((res) => {
+  const DeleteSubmission = (id) => {
+    submissionRequest.deleteSubmission(id).then((res) => {
       console.log(res);
     });
   };
@@ -69,35 +69,37 @@ export const StudentGroup = () => {
         <Header />
         <div className="w-full px-64 pt-10">
           <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-            Create Your Group Here
+            Create Your Submission Here
           </h1>
           <label className="label">
-            <span className="label-text">Group Name</span>
+            <span className="label-text">Submission Type</span>
           </label>
           <input
             className="mt-1 input input-bordered w-full"
             type="text"
-            name="gname"
-            placeholder="Enter group name..."
-            value={inputs.name}
+            name="type"
+            placeholder="Enter submission type..."
+            value={inputs.type}
             onChange={handleChange}
             required
           />
-          <label className="label">
-            <span className="label-text">Topic</span>
+
+          <label className="mt-4 label">
+            <span className="label-text">Submission Description</span>
           </label>
-          <input
-            className="mt-1 input input-bordered w-full"
+          <textarea
+            className="mt-1 input input-bordered w-full h-24"
             type="text"
-            name="topic"
-            placeholder="Enter project topic..."
-            value={inputs.topic}
+            name="description"
+            placeholder="Enter Submission Description..."
+            value={inputs.description}
             onChange={handleChange}
             required
           />
+
           <button
             className="mt-4 btn btn-active btn-primary w-full"
-            onClick={StudentGroup}>
+            onClick={Submission}>
             SAVE
           </button>
           <br />
@@ -110,10 +112,10 @@ export const StudentGroup = () => {
               <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="px-6 py-3">
-                    Group Name
+                    Type
                   </th>
                   <th scope="col" class="px-6 py-3">
-                    Project Topic
+                    Description
                   </th>
                   <th scope="col" class="px-6 py-3"></th>
                 </tr>
@@ -124,9 +126,9 @@ export const StudentGroup = () => {
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                     <td class="px-6 py-1">
-                      {group.map((g) => (
-                        <div key={g.groupID}>
-                          {g.groupName}
+                      {submission.map((sub) => (
+                        <div key={sub.id}>
+                          {sub.type}
                           <br />
                           <br />
                         </div>
@@ -134,21 +136,20 @@ export const StudentGroup = () => {
                     </td>
                   </th>
                   <td class="px-6 py-1">
-                      {group.map((g) => (
-                        <div key={g.groupID}>
-                          {g.topic}
-                          <br />
-                          <br />
-                        </div>
-                      ))}
-                    </td>
+                    {submission.map((sub) => (
+                      <div key={sub.id}>
+                        {sub.description} <br />
+                        <br />
+                      </div>
+                    ))}
+                  </td>
                   <td class="px-6 py-1">
-                    {group.map((g) => (
-                      <div key={g.groupID}>
+                    {submission.map((sub) => (
+                      <div key={sub.id}>
                         <a
                           href="#"
                           class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                          <button onClick={() => DeleteGroup(g._id)}>
+                          <button onClick={() => DeleteSubmission(sub._id)}>
                             Delete
                           </button>
                         </a>
