@@ -1,6 +1,6 @@
 import apiInstance from "../apiInstance";
 
-const getStudentGroup = () => {
+const getStudentGroups = () => {
   return apiInstance
     .get(`/api/student-group/`)
     .then((response) => {
@@ -31,7 +31,7 @@ const addStudentGroup = (group) => {
 
 const updateStudentGroup = (groupID, group) => {
   return apiInstance
-    .put(`/api/submission/${groupID}`, group)
+    .put(`/api/groups/${groupID}`, group)
     .then((response) => {
       return response;
     })
@@ -50,7 +50,7 @@ const deleteStudentGroup = (groupId) => {
 };
 
 const groupRequest = {
-  getStudentGroup,
+  getStudentGroups,
   getOneStudentGroup,
   addStudentGroup,
   updateStudentGroup,
